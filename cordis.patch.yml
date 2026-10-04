@@ -1,0 +1,11 @@
+# dsh-send-or-newline 组合层。
+#
+# 行 id 同时是两件事的标识，改动前必须一起改：
+#   1. profile 补丁层（cordis.patch.yml）里这条 Loader 条目的 id；
+#   2. 客户端半侧通过 ctx.configForms.get(<条目 id>) 绑定的设置命名空间。
+# 两者不一致时，客户端的表单拿不到已服务的命名空间，设置行不会出现。
+#
+# 只插入本插件一行；不改引擎键位表，也不接管任何引擎自己的行。
+- insert:
+    - id: send-or-newline
+      name: dsh-send-or-newline

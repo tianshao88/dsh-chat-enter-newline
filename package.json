@@ -1,0 +1,74 @@
+{
+  "name": "dsh-send-or-newline",
+  "version": "0.1.0",
+  "description": "为 DeepSeek Harness 的输入框自定义 Enter / Shift+Enter / Ctrl(Cmd)+Enter 各自「发送消息」还是「换行」。零构建、无宿主 HTTP 面，默认与引擎原生行为逐字一致。",
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "cordis",
+    "composer",
+    "enter",
+    "newline",
+    "send",
+    "keybinding",
+    "快捷键",
+    "输入框",
+    "发送",
+    "换行"
+  ],
+  "homepage": "https://github.com/tshchief/dsh-send-or-newline#readme",
+  "bugs": {
+    "url": "https://github.com/tshchief/dsh-send-or-newline/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tshchief/dsh-send-or-newline.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Eric",
+    "url": "https://github.com/tshchief"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "README.md",
+    "README.en.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node test.mjs"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh": "^0.2.0-rc.2"
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "~3.18.4"
+  },
+  "dsh": {
+    "compatibility": {
+      "node": ">=20",
+      "dshReleases": {
+        "0.2.0-rc.2": "compatible"
+      }
+    },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  }
+}

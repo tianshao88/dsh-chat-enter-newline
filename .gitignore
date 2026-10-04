@@ -1,0 +1,22 @@
+# 依赖与构建产物
+node_modules/
+
+# 任务临时目录（本仓库不依赖其中内容）
+.tmp/
+
+# 日志与系统文件
+*.log
+.DS_Store
+Thumbs.db
+
+# 编辑器与 AI 本地配置
+.vscode/
+.idea/
+.claude/
+.cursor/
+
+# 真实环境配置；模板允许提交
+.env
+.env.*
+!.env.example
+!.env.*.example
