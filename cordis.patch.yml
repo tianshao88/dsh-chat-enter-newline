@@ -1,4 +1,4 @@
-# dsh-send-or-newline 组合层。
+# dsh-chat-enter-newline 组合层。
 #
 # 行 id 同时是两件事的标识，改动前必须一起改：
 #   1. profile 补丁层（cordis.patch.yml）里这条 Loader 条目的 id；
@@ -7,5 +7,5 @@
 #
 # 只插入本插件一行；不改引擎键位表，也不接管任何引擎自己的行。
 - insert:
-    - id: send-or-newline
-      name: dsh-send-or-newline
+    - id: chat-enter-newline
+      name: dsh-chat-enter-newline

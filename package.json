@@ -1,5 +1,5 @@
 {
-  "name": "dsh-send-or-newline",
+  "name": "dsh-chat-enter-newline",
   "version": "0.1.0",
   "description": "为 DeepSeek Harness 的输入框自定义 Enter / Shift+Enter / Ctrl(Cmd)+Enter 各自「发送消息」还是「换行」。零构建、无宿主 HTTP 面，默认与引擎原生行为逐字一致。",
   "keywords": [
@@ -17,13 +17,13 @@
     "发送",
     "换行"
   ],
-  "homepage": "https://github.com/tshchief/dsh-send-or-newline#readme",
+  "homepage": "https://github.com/tshchief/dsh-chat-enter-newline#readme",
   "bugs": {
-    "url": "https://github.com/tshchief/dsh-send-or-newline/issues"
+    "url": "https://github.com/tshchief/dsh-chat-enter-newline/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tshchief/dsh-send-or-newline.git"
+    "url": "git+https://github.com/tshchief/dsh-chat-enter-newline.git"
   },
   "license": "MIT",
   "author": {
@@ -60,7 +60,8 @@
     "compatibility": {
       "node": ">=20",
       "dshReleases": {
-        "0.2.0-rc.2": "compatible"
+        "0.2.0-rc.2": "compatible",
+        "0.2.1-rc.2": "compatible"
       }
     },
     "bundle": {

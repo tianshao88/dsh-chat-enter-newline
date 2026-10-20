@@ -1,4 +1,4 @@
-// dsh-send-or-newline -- 纯逻辑单测。
+// dsh-chat-enter-newline -- 纯逻辑单测。
 //
 // client.js 是浏览器模块（window.__ModuleLoader__ + 工厂函数），不能直接 import。
 // 这里用一个假的 window 接住工厂，再用最小 require 桩调用它，取出 __test 面做断言。
@@ -28,7 +28,7 @@ const source = readFileSync(fileURLToPath(new URL('./client.js', import.meta.url
 new Function(source)()
 
 if (loaded === null) throw new Error('client.js 没有调用 window.__ModuleLoader__.load')
-if (loaded.id !== 'dsh-send-or-newline') throw new Error(`bundle id 必须等于包名，实际是 ${loaded.id}`)
+if (loaded.id !== 'dsh-chat-enter-newline') throw new Error(`bundle id 必须等于包名，实际是 ${loaded.id}`)
 
 const face = loaded.factory((name) => {
   if (name === 'react') return reactStub
@@ -126,6 +126,6 @@ check('写回后二次决策为 null', planRewrite(event, { ...ENGINE_DEFAULT, e
 check('投影合并默认', T.projectForm({ status: 'ready', writable: true, value: { enter: 'newline' } }), { status: 'ready', writable: true, value: { enter: 'newline', shiftEnter: 'newline', ctrlEnter: 'send' } })
 check('投影处理空值', T.projectForm({ status: 'loading', writable: false, value: undefined }).value, ENGINE_DEFAULT)
 
-console.log(`dsh-send-or-newline: ${passed} 项通过，${failures.length} 项失败`)
+console.log(`dsh-chat-enter-newline: ${passed} 项通过，${failures.length} 项失败`)
 for (const failure of failures) console.error(`  ✗ ${failure}`)
 if (failures.length > 0) process.exitCode = 1

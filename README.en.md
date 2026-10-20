@@ -1,4 +1,4 @@
-# dsh-send-or-newline
+# dsh-chat-enter-newline
 
 A DSH plugin that lets each of `Enter` / `Shift+Enter` / `Ctrl(Cmd)+Enter` be assigned to **send the message** or **insert a line break**, and adds an "Composer keys" row to Settings → General.
 
@@ -36,15 +36,15 @@ It only acts inside the main composer (`[data-composer-input="true"]`). Queue ed
 
 ## Where the preference lives
 
-- Namespace: `send-or-newline` (equal to the Loader entry id in `cordis.patch.yml`)
+- Namespace: `chat-enter-newline` (equal to the Loader entry id in `cordis.patch.yml`)
 - Fields: `enter` / `shiftEnter` / `ctrlEnter`, each `send` or `newline`
 - Stored in: `$DSH_HOME/profiles/<profile>/cordis.patch.yml`
 
 Writes from the settings row apply immediately, no restart. You can also edit the file by hand:
 
 ```yaml
-- id: send-or-newline
-  name: dsh-send-or-newline
+- id: chat-enter-newline
+  name: dsh-chat-enter-newline
   config:
     enter: newline     # only list the gestures you override
     ctrlEnter: send
@@ -53,10 +53,10 @@ Writes from the settings row apply immediately, no restart. You can also edit th
 ## Install
 
 ```sh
-dsh plugin --profile <profile> add github:tshchief/dsh-send-or-newline
+dsh plugin --profile <profile> add github:tshchief/dsh-chat-enter-newline
 dsh plugin --profile <profile> add file:<absolute path to this directory>
 
-dsh plugin --profile <profile> remove dsh-send-or-newline
+dsh plugin --profile <profile> remove dsh-chat-enter-newline
 ```
 
 The desktop app runs the `desktop` profile; `dsh web` runs `web`. After installing, refresh the page (a restart is only needed if the row does not appear). Editing this directory requires re-running the install: `file:` copies files, it does not symlink.
@@ -66,8 +66,9 @@ The desktop app runs the `desktop` profile; `dsh web` runs `web`. After installi
 | DSH | Platform | Status |
 |---|---|---|
 | `0.2.0-rc.2` | Windows desktop (Web GUI) | Tested: settings write, `Enter` newline, `Ctrl+Enter` send |
+| `0.2.1-rc.2` | Windows desktop (Web GUI) | Engine contract check 8/8, install and settings-row registration verified; key behaviour awaiting a human re-test |
 
-Other versions are unverified. `peerDependencies` declares `@deepseek-ai/dsh: ^0.2.0-rc.2` — that is the compatibility check the engine actually enforces (`evaluatePluginCompatibility` only inspects `@deepseek-ai/dsh*` peers). A `dsh.compatibility.dshReleases` map is also present as community-store metadata; the engine ignores it.
+Other versions are unverified. `peerDependencies` declares `@deepseek-ai/dsh: ^0.2.0-rc.2` (the range covers 0.2.x prereleases; 0.2.1-rc.2 passes the install check) — that is the compatibility check the engine actually enforces (`evaluatePluginCompatibility` only inspects `@deepseek-ai/dsh*` peers). A `dsh.compatibility.dshReleases` map is also present as community-store metadata; the engine ignores it.
 
 ## Engine contracts this plugin depends on
 

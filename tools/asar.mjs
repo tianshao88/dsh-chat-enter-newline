@@ -171,7 +171,7 @@ function check() {
   console.log('')
   versions()
   console.log('')
-  if (failed === 0) console.log('全部契约通过；当前 DSH 与 dsh-send-or-newline 兼容。')
+  if (failed === 0) console.log('全部契约通过；当前 DSH 与 dsh-chat-enter-newline 兼容。')
   else console.log(`${failed} 项契约未通过：先读 AGENTS.md 的「依赖的引擎契约」，再改插件。`)
   process.exitCode = failed === 0 ? 0 : 1
 }

@@ -1,4 +1,4 @@
-// dsh-send-or-newline -- 宿主半边。
+// dsh-chat-enter-newline -- 宿主半边。
 //
 // 为什么需要宿主半边：在 DSH 0.2.0-rc.2 里，可持久化的插件偏好由 profile 的
 // Cordis 补丁层承载，客户端通过 ctx.configForms.get(<条目 id>) 读写。命名空间的内容
@@ -10,7 +10,7 @@
 import z from '@deepseek-ai/schemastery'
 
 /** Loader 条目 id，也是 ctx.configForms 的命名空间。与 cordis.patch.yml 保持一致。 */
-export const name = 'send-or-newline'
+export const name = 'chat-enter-newline'
 
 /** 每个手势可以取的两个动作。 */
 const ACTIONS = ['send', 'newline']

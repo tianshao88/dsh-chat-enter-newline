@@ -1,4 +1,4 @@
-# dsh-send-or-newline
+# dsh-chat-enter-newline
 
 DSH 插件：让输入框的 `Enter` / `Shift+Enter` / `Ctrl(Cmd)+Enter` 各自可选「发送消息」或「换行」，并在 设置 → 通用 增加一行「输入快捷键」。
 
@@ -38,15 +38,15 @@ DSH 把「发送消息」「换行」登记为**固定输入操作**（`register
 
 可持久化的插件偏好由 profile 的 Cordis 补丁层承载：
 
-- 命名空间：`send-or-newline`（等于 `cordis.patch.yml` 里的 Loader 条目 id）
+- 命名空间：`chat-enter-newline`（等于 `cordis.patch.yml` 里的 Loader 条目 id）
 - 字段：`enter` / `shiftEnter` / `ctrlEnter`，取值 `send` 或 `newline`
 - 落盘位置：`$DSH_HOME/profiles/<profile>/cordis.patch.yml`
 
 持久化不用重启：设置行里的选择立即写进该文件并立即生效。也可以直接手改该文件，插件行写成：
 
 ```yaml
-- id: send-or-newline
-  name: dsh-send-or-newline
+- id: chat-enter-newline
+  name: dsh-chat-enter-newline
   config:
     enter: newline     # 只写要覆盖的手势；未写的字段走 schema 默认
     ctrlEnter: send
@@ -93,11 +93,11 @@ node tools/asar.mjs check  # 引擎契约自检
 
 ```sh
 # 从 Git 仓库或本地目录安装（profile 要与实际运行的一致）
-dsh plugin --profile <profile> add github:tshchief/dsh-send-or-newline
+dsh plugin --profile <profile> add github:tshchief/dsh-chat-enter-newline
 dsh plugin --profile <profile> add file:<本目录绝对路径>
 
 # 卸载
-dsh plugin --profile <profile> remove dsh-send-or-newline
+dsh plugin --profile <profile> remove dsh-chat-enter-newline
 ```
 
 桌面应用启动的 profile 名是 `desktop`；用 `dsh web` 启动时是 `web`。安装后无需重启引擎，刷新页面即可看到设置行；若没出现，再重启引擎。**改完本目录的源码要重跑一次安装**——`file:` 是复制而不是软链。
@@ -107,8 +107,9 @@ dsh plugin --profile <profile> remove dsh-send-or-newline
 | DSH | 平台 | 状态 |
 |---|---|---|
 | `0.2.0-rc.2` | Windows 桌面端（Web GUI） | 已实测：设置行写入、`Enter` 换行、`Ctrl+Enter` 发送 |
+| `0.2.1-rc.2` | Windows 桌面端（Web GUI） | 契约自检 8/8 通过、安装与设置行注册正常；按键行为待真人复验 |
 
-其它版本未验证。`package.json` 用 `peerDependencies` 声明 `@deepseek-ai/dsh: ^0.2.0-rc.2`：这是引擎**真正会拦**的兼容性声明（`evaluatePluginCompatibility` 只检查 `peerDependencies` 里的 `@deepseek-ai/dsh*`）；另外还有一份 `dsh.compatibility.dshReleases`，那是社区商店的上架元数据，引擎不校验。
+其它版本未验证。`package.json` 用 `peerDependencies` 声明 `@deepseek-ai/dsh: ^0.2.0-rc.2`（该范围覆盖 0.2.x 的 rc，0.2.1-rc.2 已通过安装校验）：这是引擎**真正会拦**的兼容性声明（`evaluatePluginCompatibility` 只检查 `peerDependencies` 里的 `@deepseek-ai/dsh*`）；另外还有一份 `dsh.compatibility.dshReleases`，那是社区商店的上架元数据，引擎不校验。
 
 ## 已知限制
 
@@ -121,12 +122,12 @@ dsh plugin --profile <profile> remove dsh-send-or-newline
 
 已完成：
 
-- `repository` / `bugs` / `homepage` 指向 `https://github.com/tshchief/dsh-send-or-newline`（在 GitHub 建好同名仓库后即生效）。
+- `repository` / `bugs` / `homepage` 指向 `https://github.com/tshchief/dsh-chat-enter-newline`（在 GitHub 建好同名仓库后即生效）。
 - `LICENSE` 署名为 `Eric`，与 GitHub 显示名一致。
 
 待办：
 
-- 在 GitHub 创建 `dsh-send-or-newline` 仓库并推送（本目录尚未初始化 git）。
+- 在 GitHub 创建 `dsh-chat-enter-newline` 仓库并推送（本目录尚未初始化 git）。
 - npm 发布：需要 npm 账号；推荐用 GitHub Actions + npm OIDC 可信发布（带 provenance 签名），与同类插件的做法一致。
 - 版本策略：DSH 仍在 rc 阶段，本插件按 `0.x` 递增；`peerDependencies` 与 `dsh.compatibility` 随已验证的 DSH 版本更新。
 

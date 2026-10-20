@@ -1,4 +1,4 @@
-// dsh-send-or-newline -- 浏览器半边。
+// dsh-chat-enter-newline -- 浏览器半边。
 //
 // 两件事：
 //   1. 按用户偏好重新解释输入框里的 Enter 手势；
@@ -15,14 +15,14 @@
 // 只依赖 react（浏览器模块表的基座模块）。刻意不 require 任何引擎客户端包：官方
 // practices 明确禁止，且它们的导出会随版本变化。
 window.__ModuleLoader__.load({
-  id: 'dsh-send-or-newline',
+  id: 'dsh-chat-enter-newline',
   factory: (require) => {
     const React = require('react')
 
     /** 本插件的 locale 命名空间。 */
-    const NS = 'send-or-newline'
+    const NS = 'chat-enter-newline'
     /** Loader 条目 id，也是 ctx.configForms 的命名空间；与 cordis.patch.yml 一致。 */
-    const ENTRY_ID = 'send-or-newline'
+    const ENTRY_ID = 'chat-enter-newline'
     /** 引擎的输入框可编辑面。 */
     const COMPOSER_SELECTOR = '[data-composer-input="true"]'
     /** 拥有输入框与其 overlay 席位的卡片。 */
@@ -206,20 +206,20 @@ window.__ModuleLoader__.load({
 
     /** 行样式：只用 Inspect 列出的主题 token，浅色深色自动跟随。 */
     const ROW_CSS = [
-      '.dsh-snl-row{display:flex;align-items:flex-start;gap:8px;padding:16px 0;border-bottom:.5px solid var(--dsw-alias-border-l1)}',
-      '.dsh-snl-text{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0;padding-right:48px}',
-      '.dsh-snl-title{color:var(--dsw-alias-label-primary);font-size:14px;font-weight:400;line-height:22px}',
-      '.dsh-snl-desc{color:var(--dsw-alias-label-secondary);font-size:12px;font-weight:400;line-height:18px}',
-      '.dsh-snl-error{color:var(--dsw-alias-state-error-primary);font-size:12px;line-height:18px}',
-      '.dsh-snl-controls{display:flex;flex-direction:column;gap:8px;flex:none}',
-      '.dsh-snl-line{display:flex;align-items:center;gap:12px;justify-content:flex-end}',
-      '.dsh-snl-key{color:var(--dsw-alias-label-secondary);font-size:12px;line-height:18px;white-space:nowrap}',
-      '.dsh-snl-seg{display:inline-flex;gap:2px;padding:2px;border-radius:18px;background:var(--dsw-alias-bg-layer-2)}',
-      '.dsh-snl-seg button{height:32px;padding:0 12px;border:none;border-radius:16px;background:transparent;color:var(--dsw-alias-label-secondary);font:inherit;font-size:13px;line-height:20px;cursor:pointer}',
-      '.dsh-snl-seg button:hover:not(:disabled){color:var(--dsw-alias-label-primary)}',
-      '.dsh-snl-seg button[aria-pressed="true"]{background:var(--dsw-alias-bg-base);color:var(--dsw-alias-label-primary);box-shadow:0 0 0 .5px var(--dsw-alias-border-l1)}',
-      '.dsh-snl-seg button:disabled{opacity:.6;cursor:default}',
-      '.dsh-snl-seg button:focus-visible{outline:2px solid var(--dsw-alias-brand-primary);outline-offset:2px}',
+      '.dsh-cen-row{display:flex;align-items:flex-start;gap:8px;padding:16px 0;border-bottom:.5px solid var(--dsw-alias-border-l1)}',
+      '.dsh-cen-text{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0;padding-right:48px}',
+      '.dsh-cen-title{color:var(--dsw-alias-label-primary);font-size:14px;font-weight:400;line-height:22px}',
+      '.dsh-cen-desc{color:var(--dsw-alias-label-secondary);font-size:12px;font-weight:400;line-height:18px}',
+      '.dsh-cen-error{color:var(--dsw-alias-state-error-primary);font-size:12px;line-height:18px}',
+      '.dsh-cen-controls{display:flex;flex-direction:column;gap:8px;flex:none}',
+      '.dsh-cen-line{display:flex;align-items:center;gap:12px;justify-content:flex-end}',
+      '.dsh-cen-key{color:var(--dsw-alias-label-secondary);font-size:12px;line-height:18px;white-space:nowrap}',
+      '.dsh-cen-seg{display:inline-flex;gap:2px;padding:2px;border-radius:18px;background:var(--dsw-alias-bg-layer-2)}',
+      '.dsh-cen-seg button{height:32px;padding:0 12px;border:none;border-radius:16px;background:transparent;color:var(--dsw-alias-label-secondary);font:inherit;font-size:13px;line-height:20px;cursor:pointer}',
+      '.dsh-cen-seg button:hover:not(:disabled){color:var(--dsw-alias-label-primary)}',
+      '.dsh-cen-seg button[aria-pressed="true"]{background:var(--dsw-alias-bg-base);color:var(--dsw-alias-label-primary);box-shadow:0 0 0 .5px var(--dsw-alias-border-l1)}',
+      '.dsh-cen-seg button:disabled{opacity:.6;cursor:default}',
+      '.dsh-cen-seg button:focus-visible{outline:2px solid var(--dsw-alias-brand-primary);outline-offset:2px}',
     ].join('')
 
     /**
@@ -230,11 +230,11 @@ window.__ModuleLoader__.load({
       const { gesture, value, disabled, onPick, t } = props
       return React.createElement(
         'div',
-        { className: 'dsh-snl-line' },
-        React.createElement('span', { className: 'dsh-snl-key' }, t(gesture.labelKey)),
+        { className: 'dsh-cen-line' },
+        React.createElement('span', { className: 'dsh-cen-key' }, t(gesture.labelKey)),
         React.createElement(
           'span',
-          { className: 'dsh-snl-seg', role: 'group', 'aria-label': `${t('title')} ${t(gesture.labelKey)}` },
+          { className: 'dsh-cen-seg', role: 'group', 'aria-label': `${t('title')} ${t(gesture.labelKey)}` },
           ACTIONS.map((action) =>
             React.createElement(
               'button',
@@ -269,22 +269,22 @@ window.__ModuleLoader__.load({
 
       return React.createElement(
         'div',
-        { className: 'dsh-snl-row' },
+        { className: 'dsh-cen-row' },
         React.createElement('style', { dangerouslySetInnerHTML: { __html: ROW_CSS } }),
         React.createElement(
           'div',
-          { className: 'dsh-snl-text' },
-          React.createElement('div', { className: 'dsh-snl-title' }, t('title')),
+          { className: 'dsh-cen-text' },
+          React.createElement('div', { className: 'dsh-cen-title' }, t('title')),
           React.createElement(
             'div',
-            { className: 'dsh-snl-desc' },
+            { className: 'dsh-cen-desc' },
             disabled && state.status === 'unavailable' ? t('unavailable') : t('desc'),
           ),
-          failed ? React.createElement('div', { className: 'dsh-snl-error' }, t('saveFailed')) : null,
+          failed ? React.createElement('div', { className: 'dsh-cen-error' }, t('saveFailed')) : null,
         ),
         React.createElement(
           'div',
-          { className: 'dsh-snl-controls' },
+          { className: 'dsh-cen-controls' },
           GESTURES.map((gesture) =>
             React.createElement(GestureControl, {
               key: gesture.key,
@@ -331,7 +331,7 @@ window.__ModuleLoader__.load({
           unsubscribe()
           void form.dispose()
         }
-      }, 'send-or-newline: form subscription')
+      }, 'chat-enter-newline: form subscription')
 
       /** 写一个手势的偏好；Host 拒绝时返回 false。 */
       const setKey = (key, action) => {
@@ -356,9 +356,9 @@ window.__ModuleLoader__.load({
         }
         document.addEventListener('keydown', onKeyDown, true)
         return () => document.removeEventListener('keydown', onKeyDown, true)
-      }, 'send-or-newline: key remap')
+      }, 'chat-enter-newline: key remap')
 
-      ctx.effect(() => ctx.locale.register(NS, { zh, en }), 'send-or-newline: dictionaries')
+      ctx.effect(() => ctx.locale.register(NS, { zh, en }), 'chat-enter-newline: dictionaries')
 
       // 命名空间被 Host 服务后才注册设置行：没有设置服务的部署看不到任何痕迹。
       ctx.effect(
@@ -378,7 +378,7 @@ window.__ModuleLoader__.load({
               ),
             ),
           ),
-        'send-or-newline: settings row',
+        'chat-enter-newline: settings row',
       )
     }
 
