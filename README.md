@@ -1,4 +1,6 @@
-# dsh-chat-enter-newline
+# DSH chat-enter-newline
+
+> **DSH chat-enter-newline** 是展示名；npm 包名（也是 Loader 条目 id 的来源）是 `dsh-chat-enter-newline` —— npm 要求包名全小写，大写形式只用于给人看的标题、仓库描述与商店条目。
 
 DSH 插件：让输入框的 `Enter` / `Shift+Enter` / `Ctrl(Cmd)+Enter` 各自可选「发送消息」或「换行」，并在 设置 → 通用 增加一行「输入快捷键」。
 
@@ -93,7 +95,7 @@ node tools/asar.mjs check  # 引擎契约自检
 
 ```sh
 # 从 Git 仓库或本地目录安装（profile 要与实际运行的一致）
-dsh plugin --profile <profile> add github:tshchief/dsh-chat-enter-newline
+dsh plugin --profile <profile> add github:tianshao88/dsh-chat-enter-newline
 dsh plugin --profile <profile> add file:<本目录绝对路径>
 
 # 卸载
@@ -118,16 +120,16 @@ dsh plugin --profile <profile> remove dsh-chat-enter-newline
 - 本插件不改变「忙碌时 Enter 是排队还是插话」的行为，那是 设置 → 通用 里引擎自己的 `composer-enter` 行。
 - 依赖引擎的几个 DOM 语义属性与槽位名（见上文契约）。引擎大版本改动时失效模式是「静默不生效」，不会破坏原生功能。
 
-## 发布前清单
+## 发布状态
 
 已完成：
 
-- `repository` / `bugs` / `homepage` 指向 `https://github.com/tshchief/dsh-chat-enter-newline`（在 GitHub 建好同名仓库后即生效）。
+- GitHub 公开仓库已创建并添加 `dsh-plugin` topic：`https://github.com/tianshao88/dsh-chat-enter-newline`。
+- `repository` / `bugs` / `homepage` 均指向该仓库。
 - `LICENSE` 署名为 `Eric`，与 GitHub 显示名一致。
 
 待办：
 
-- 在 GitHub 创建 `dsh-chat-enter-newline` 仓库并推送（本目录尚未初始化 git）。
 - npm 发布：需要 npm 账号；推荐用 GitHub Actions + npm OIDC 可信发布（带 provenance 签名），与同类插件的做法一致。
 - 版本策略：DSH 仍在 rc 阶段，本插件按 `0.x` 递增；`peerDependencies` 与 `dsh.compatibility` 随已验证的 DSH 版本更新。
 

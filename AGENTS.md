@@ -23,6 +23,7 @@ DSH 插件：让输入框的 `Enter` / `Shift+Enter` / `Ctrl(Cmd)+Enter` 各自�
    - 包名 `dsh-chat-enter-newline` **必须等于** `client.js` 里 bundle 的 `id`（引擎按包名解析 bundle）。
    - Loader 条目 id `chat-enter-newline`（`cordis.patch.yml`）**必须等于** `ctx.configForms.get(...)` 的命名空间、设置行的 `id`、以及 `client.js` 里的 `ENTRY_ID` 与 locale 命名空间 `NS`。
    - 包名带 `dsh-` 前缀、条目 id 不带，这是刻意的，与引擎其它插件一致（`dsh-agent-loop` → `agent-loop`）。不一致时设置行会静默消失。
+   - **展示名与标识符是两回事**：给人看的地方（README 标题、GitHub 仓库描述、社区商店条目、中文正文）写 **DSH chat-enter-newline**；任何会被解析的标识符（`package.json` 的 `name`、bundle `id`、Loader 条目 `id`、`ENTRY_ID`、`NS`）**只能全小写**。npm 的 `validate-npm-package-name` 规定包名不允许大写，DSH 也没有 `displayName` 字段可供覆盖，所以不要试图把大写塞进标识符。
 2. **改包名要连 profile 补丁层一起改**。用户偏好写在 `$DSH_HOME/profiles/<profile>/cordis.patch.yml`，那条记录同时带 `id` 与 `name`；只改包名不改那里的 `name`，Loader 会去加载一个已不存在的包，启动即报错。
 3. **`volatile()` 不能省**：只有标了 `volatile()` 的字段才进入设置表单投影，浏览器端才能读到、写回。
 4. **宿主半边不做别的**：不注册服务、路由、监听或定时器。加东西前先确认真的需要宿主侧能力。
@@ -81,5 +82,3 @@ node tools/asar.mjs check                                          # 引擎契�
 | 2026-10-20（当前） | `dsh-chat-enter-newline` | `chat-enter-newline` |
 
 改名后旧命名空间下的偏好不会自动迁移：需要在 profile 补丁层里把那条记录的 `id` / `name` 一并对齐到当前名字，`config` 段的值原样保留。改名时三个位置必须同步——`package.json` 的 `name`、`client.js` 里 bundle 的 `id`（两者必须相等），以及 `cordis.patch.yml` 的条目 `id` / `name`（与 `ENTRY_ID`、`NS`、设置行 `id` 相等）。
-
-另外两点历史教训：社区里有两个已占用 `composer-keys` 条目 id 的插件（`dsh-composer-keys`、`dsh-keys-setting`），同类插件不要混装——它们都在捕获阶段改写键盘事件，装在一起会互相打架；`dsh-keys-setting` 还用了本文件第 2 条不变量所说已废弃的 `settings.register` API，在 0.2.0-rc.2 上装不出效果。

@@ -17,18 +17,18 @@
     "发送",
     "换行"
   ],
-  "homepage": "https://github.com/tshchief/dsh-chat-enter-newline#readme",
+  "homepage": "https://github.com/tianshao88/dsh-chat-enter-newline#readme",
   "bugs": {
-    "url": "https://github.com/tshchief/dsh-chat-enter-newline/issues"
+    "url": "https://github.com/tianshao88/dsh-chat-enter-newline/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tshchief/dsh-chat-enter-newline.git"
+    "url": "git+https://github.com/tianshao88/dsh-chat-enter-newline.git"
   },
   "license": "MIT",
   "author": {
     "name": "Eric",
-    "url": "https://github.com/tshchief"
+    "url": "https://github.com/tianshao88"
   },
   "type": "module",
   "engines": {

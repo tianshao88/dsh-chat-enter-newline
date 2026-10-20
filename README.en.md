@@ -1,4 +1,6 @@
-# dsh-chat-enter-newline
+# DSH chat-enter-newline
+
+> **DSH chat-enter-newline** is the display name; the npm package name (which the Loader entry id derives from) is `dsh-chat-enter-newline` — npm requires all-lowercase package names, so the capitalised form is only for titles, repository descriptions and store listings.
 
 A DSH plugin that lets each of `Enter` / `Shift+Enter` / `Ctrl(Cmd)+Enter` be assigned to **send the message** or **insert a line break**, and adds an "Composer keys" row to Settings → General.
 
@@ -53,7 +55,7 @@ Writes from the settings row apply immediately, no restart. You can also edit th
 ## Install
 
 ```sh
-dsh plugin --profile <profile> add github:tshchief/dsh-chat-enter-newline
+dsh plugin --profile <profile> add github:tianshao88/dsh-chat-enter-newline
 dsh plugin --profile <profile> add file:<absolute path to this directory>
 
 dsh plugin --profile <profile> remove dsh-chat-enter-newline
